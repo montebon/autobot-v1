@@ -6,7 +6,7 @@ module.exports.config = {
   cooldown: 5,
   role: 0,
   hasPrefix: false,
-  aliases: ['ai', 'gemini'],
+  aliases: [''],
   description: "this command may help you",
   usage: "{pref}[name of cmd] [query]",
   credits: "Google"
