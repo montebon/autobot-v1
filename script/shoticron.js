@@ -25,7 +25,7 @@ module.exports.config = {
 
 const shoticron = async (api, event, threadID) => {
   try {
-    let response = await axios.post('https://shoti-apis.onrender.com/api/v1/get', { apikey: 'shoti-1hgn30msgapp542i0qg' });
+    let response = await axios.post('https://your-shoti-service-apis.onrender.com/api/v1/get', { apikey: 'shoti-1hgn30msgapp542i0qg' });
     console.log('API Response:', response.data);
 
     if (response.data.error) {
