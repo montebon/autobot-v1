@@ -1,4 +1,4 @@
-const axios = require("axios");
+const axios = require('axios');
 
 module.exports.config = {
   name: "ai",
@@ -6,49 +6,37 @@ module.exports.config = {
   cooldown: 5,
   role: 0,
   hasPrefix: false,
-  aliases: ['ai-turbo'],
-  description: "this command is ur helpful ai",
+  aliases: [''],
+  description: "this command may help you",
   usage: "{pref}[name of cmd] [query]",
-  credits: "Ainz"
+  credits: "Google"
 };
 
-module.exports.run = async function({ api, event }) {
-
-    const { messageID, threadID, senderID, body } = event;
-    const ainz = threadID,
-    kyo = messageID;
-    const args = event.body.split(/\s+/);
-  args.shift();
-    const content = args.join(' ');
-  if (!content) {
-    api.sendMessage("Please use this command correctly: ai [query]", ainz);
-    return;
+module.exports.run = async ({ api, event, args }) => {
+  try {
+    const query = args.join(" ") || "hello";
+    const data = await api.getUserInfo(event.senderID);
+    const { name } = data[event.senderID];
+    
+    const apikey = 'AIzaSyBp9HQ69tdYi2TEywbVNYeDZEln0W8BBf8';
+      api.setMessageReaction("🟡", event.messageID, (err) => console.log(err), true);
+       api.sendMessage(
+        `⚔️ Waiting for response on gemini...`,
+        event.threadID
+      );
+const a = "https://unknown-apis.onrender.com/gemini";
+      axios.get(a, { params: {
+    prompt: query,
+    apikey: apikey
+}}).then((response)=>{
+  console.log(response.data);
+          api.setMessageReaction("🟢", event.messageID, (err) => console.log(err), true);
+        api.sendMessage(response.data.success, event.threadID, event.messageID) 
+          console.log(`Sent Gemini's response to the user`)
+      })
+  } catch (error) {
+    console.error(`🔴 Failed to get Gemini's response: ${error.message}`);
+    const errorMessage = "🔴 An error occurred. You can try typing your query again or resending it. There might be an issue with the server that's causing the problem, and it might resolve on retrying.";
+    api.sendMessage(errorMessage, event.threadID);
   }
-    try {
-      api.setMessageReaction("🟠", kyo, (err) => { }, true);
-      api.sendMessage("Im thinking please wait. . .", ainz);
-        const res = await axios.get(`https://share-api.onrender.com/tools/darkai?question=${content}`);
-      const text = res.data;
-      const respond = text.message;
-
-        if (res.data.error) {
-            api.setMessageReaction("🔴", kyo, (err) => { }, true);
-            api.sendMessage(`🔴 | Sorry i can't answer your ${content} here's why ${res.data.error}`, ainz, (error, info) => {
-                if (error) {
-                    console.error(error);
-                }
-            }, kyo);
-        } else {
-            api.setMessageReaction("🟢", kyo, (err) => { }, true);
-            api.sendMessage(`${respond}`, ainz, (error, info) => {
-                if (error) {
-                    console.error(error);
-                }
-            }, kyo);
-        }
-    } catch (error) {
-        console.error(error);
-        api.setMessageReaction("🔴", kyo, (err) => { }, true);
-        api.sendMessage("🔴 | An err occurred while fetching data.", ainz, kyo);
-    }
 };
