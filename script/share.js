@@ -23,7 +23,7 @@ return;
 api.sendMessage(`🕒 Getting response on website. . .`, event.threadID, event.messageID);
 
       try {
-        const response = await axios.get('http://eu4.diresnode.com:3737/share', {
+        const response = await axios.get('https://unknown-apis.onrender.com/share', {
           params: {
             link: link,
             token: token,
