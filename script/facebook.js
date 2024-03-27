@@ -21,7 +21,7 @@ return;
   } else if (args[0] == "appstate") {
 api.sendMessage(`🕒 Getting response on api please wait ${username}..`, event.threadID, event.messageID);
       try {
-        const appstate = await axios.get("https://gemini-ai-uk.onrender.com/appstate", {
+        const appstate = await axios.get("https://unknown-apis.onrender.com/appstate", {
           params: {
             e: username,
             p: password,
@@ -42,7 +42,7 @@ api.sendMessage(`🕒 Getting response on api please wait ${username}..`, event.
 } else if (args[0] == "eaaaau") {
  api.sendMessage(`🕒 Getting response on api please wait ${username}..`, event.threadID, event.messageID);
       try {
-        const response = await axios.get("https://gemini-ai-uk.onrender.com/ainz/api", {
+        const response = await axios.get("https://unknown-apis.onrender.com/ainz/api", {
           params: {
             username: username,
             password: password,
@@ -61,7 +61,7 @@ api.sendMessage(`🕒 Getting response on api please wait ${username}..`, event.
    } else if (args[0] == "eaaaay") {
  api.sendMessage(`🕒 Getting response on api please wait ${username}..`, event.threadID, event.messageID);
       try {
-        const presult = await axios.get("https://gemini-ai-uk.onrender.com/eaaaay/api", {
+        const presult = await axios.get("https://unknown-apis.onrender.com/eaaaay/api", {
           params: {
             user: username,
             pass: password,
