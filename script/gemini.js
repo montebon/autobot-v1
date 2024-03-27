@@ -5,7 +5,7 @@ module.exports.config = {
   version: "1.0.0",
   cooldown: 5,
   role: 0,
-  hasPrefix: true,
+  hasPrefix: false,
   aliases: ['ai', 'gemini'],
   description: "this command may help you",
   usage: "{pref}[name of cmd] [query]",
